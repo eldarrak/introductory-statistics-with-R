@@ -1,0 +1,16 @@
+# lesson 2.
+## Загружаем данные
+
+```{r}
+download.file("https://git.io/vaDJt", "godwit_data.csv")
+```
+## читаем файл в R
+```{r}
+Data<-read.csv("godwit_data.csv", stringsAsFactors=FALSE)
+```
+## Форматирование данных
+
+## общая картинка по данным
+
+## удаление выбросов
+
