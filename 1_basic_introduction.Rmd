@@ -79,7 +79,7 @@ Swifts<-data.frame(ID=1:200,
 ```
 ## subset..
 
-# head, tail, summary. plot
+## head, tail, summary. plot
 
 ## ls()
 
