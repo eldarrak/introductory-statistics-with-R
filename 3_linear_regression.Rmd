@@ -1,0 +1,24 @@
+# План занятия 4
+
+## Уравнение линейной регрессии
+
+## Assumptions
+   - Linear relationship
+   - Multivariate normality
+   - No or little multicollinearity
+   - No auto-correlation
+   - Homoscedasticity
+
+## Симуляция данных для линейной модели Y~a+bx+Epsilon
+
+## Анализ линейной модели в R (lm)
+
+## plot.lm
+
+## predict
+
+## plot predict
+
+## Линейная регрессия с факторной переменной - контрасты
+
+## plot predict
