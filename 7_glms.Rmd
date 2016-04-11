@@ -1,0 +1,58 @@
+# План занятия 6
+
+## Основные предлоложнения lm
+
+## GLM
+
+## Poisson GLM для учетных данных
+
+## Пример анализа
+```{r}
+download.file("https://git.io/vVQUv", "tree_swallow_data.csv")
+
+Data<-read.csv("tree_swallow_data.csv", stringsAsFactors=FALSE)
+```
+## GLM for proportional and binary data
+```{r}
+download.file("https://git.io/vVQqV", "germination_data.csv")
+
+data<-read.table("germination_data.csv", stringsAsFactors=FALSE, header=TRUE)
+
+names(data)
+# [1] "count"     "sample"    "Orobanche" "extract"  
+summary(data)
+
+#let's calculate the proportions:
+data$Prop <- data$count/data$sample
+
+#this is a quick way to look at an interaction.
+#it doesn't look nice, but its quick...
+interaction.plot(data$extract,data$Orobanche,data$Prop)
+
+#it looks like the proportion of germinating seeds is higher on cucumber
+#and that a75 does better than a73. 
+#It might even be that there is an interaction, with a75 proportions increasing more than
+#a73 when moving from bean to cucumber. Lets see if the data contains evidence for this.
+
+# In binomial glms, the response variable is made up of 
+# two columns: successes and failures.
+# You could use just the proportions, but then you loose information, because sample sizes differ
+# greatly:
+data$sample
+
+
+#first define the two-column response
+data$failures <- data$sample - data$count
+y <- cbind(data$count,data$failures)
+
+#produce the full model, and check for overdispersion!
+model1 <- glm(y ~ extract*Orobanche,data=data,binomial)
+summary(model1)
+
+#how high is the overdispersion?
+
+
+#we must move over to quasibinomial:
+model2 <- glm(y ~ extract*Orobanche,data=data,quasibinomial)
+summary(model2)
+```
