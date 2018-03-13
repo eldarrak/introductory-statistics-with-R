@@ -18,7 +18,7 @@ save(Swifts, file='Swifts.RData')
 write.csv2(Swifts, file='Swifts.csv')
 ```
 
-Библиотеки в R
+№№ Библиотеки в R
 ```{r}
 install.packages('nlme')
 library(nlme)
