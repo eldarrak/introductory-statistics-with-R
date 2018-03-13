@@ -1,11 +1,30 @@
 # План занятий
-## 1. Основы работы с R, симуляция данных
+## 1. Основы работы с R
+Принципы работы, симуляция данных /Introduction to R environment and GUIs (RStudio), Introduction to R language. Data simulation.
+
 ## 2. Импорт данных
+Data import, Objects in R. vector, data.frame, matrix, array, list
+
 ## 3. Графики в R
-## 3. Линейная регрессия, model selection
-## 4. Псевдорепликация и mixed models
-## 5. GLM (binomial, Poisson)
-## 6. Карты в R
-## 7. _занятие по предложениям студентов или ggplot ggmap или GAM_
-## 8. Анализ главных компонент
+Principles of plotting in R. 
+
+## 3. Линейная регрессия и дисперсионный анализ. 
+Linear regrerssion, ANOVA, Conepts of model selection and multimodel inference.
+
+## 4. Псевдорепликация и смешанные модели.
+Mixed effects models, pseudoreplication.
+
+## 5. Обобщенные линейные модели.
+GLM (binomial, Poisson). Prediction from GLMs.
+
+## 6. GAM Generalised additive models.
+basic introdution to mgcv
+
+## 7. Карты в R.
+Maps in R. Introduction to sp and maptools packages. Some info over ggmap.
+
+## 8. Анализ главных компонент.
+Principal components.
+
 ## 9. Зачёт
+Final Exam.
