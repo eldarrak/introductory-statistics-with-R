@@ -1,7 +1,7 @@
 # Занятие 2
 Сохранение данных, чтение, импорт, удаление выбросов.
 
-## сохранение данных
+## Cохранение данных
 ```{r}
 ls()
 
@@ -18,7 +18,7 @@ save(Swifts, file='Swifts.RData')
 write.csv2(Swifts, file='Swifts.csv')
 ```
 
-№№ Библиотеки в R
+## Библиотеки в R
 ```{r}
 install.packages('nlme')
 library(nlme)
