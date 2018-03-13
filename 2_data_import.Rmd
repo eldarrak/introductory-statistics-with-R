@@ -1,6 +1,5 @@
 # lesson 2.
 ## Загружаем данные
-
 ```{r}
 download.file("https://git.io/vaDJt", "godwit_data.csv")
 ```
@@ -9,8 +8,15 @@ download.file("https://git.io/vaDJt", "godwit_data.csv")
 Data<-read.csv("godwit_data.csv", stringsAsFactors=FALSE)
 ```
 ## Форматирование данных
+```{r}
+str(Data)
+```
+POSIX формат даты/времени
 
 ## общая картинка по данным
+```{r}
+plot(Data)
+```
 
 ## удаление выбросов
 
