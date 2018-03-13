@@ -1,22 +1,61 @@
-# lesson 2.
-## Загружаем данные
+# Занятие 2
+Сохранение данных, чтение, импорт, удаление выбросов.
+
+## сохранение данных
+```{r}
+ls()
+
+getwd()
+setwd('D:')
+save.image('lesson1.RData')
+
+rm('A')
+A # ошибка!
+load('lesson1.RData')
+A
+save(Swifts, file='Swifts.RData')
+
+write.csv2(Swifts, file='Swifts.csv')
+```
+
+Библиотеки в R
+```{r}
+install.packages('nlme')
+library(nlme)
+library(FLightR)
+citation()
+citation('FLightR')
+```
+
+## Операции с таблицей
 ```{r}
 download.file("https://git.io/vaDJt", "godwit_data.csv")
-```
-## читаем файл в R
-```{r}
-Data<-read.csv("godwit_data.csv", stringsAsFactors=FALSE)
-```
-## Форматирование данных
-```{r}
-str(Data)
-```
-POSIX формат даты/времени
 
-## общая картинка по данным
-```{r}
-plot(Data)
+Godwits<-read.csv("godwit_data.csv", as.is=TRUE)
+
+head(Godwits)
+Godwits$DATE<-as.Date(Godwits$DATE)
+
+format(Godwits$DATE, format='%Y')[1]
+Godwits$Year<-format(Godwits$DATE, format='%Y')
+
+Godwits$yday<-format(Godwits$DATE, format='%j')
+str(Godwits)
+
+Godwits_s<-subset(Godwits, select=c(DATE, MASS, WING, TOTHD, TARS, Year, yday))
+
+str(Godwits_s)
+
+summary(Godwits_s)
+plot(Godwits_s)
+
+Godwits_s$MASS[!is.na(Godwits_s$MASS==999) & Godwits_s$MASS==999]<-NA
+
+Godwits_s$WING[!is.na(Godwits_s$WING==999) & Godwits_s$WING==999]<-NA
+
+Godwits_s$TARS[!is.na(Godwits_s$TARS==999) & Godwits_s$TARS==999]<-NA
+
+Godwits_s$TOTHD[!is.na(Godwits_s$TOTHD==999) & Godwits_s$TOTHD==999]<-NA
+
+plot(Godwits_s)
 ```
-
-## удаление выбросов
-
