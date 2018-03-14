@@ -1,22 +1,68 @@
-## План занятия 3
+### Занятие 2 Простые графики в R
 
-### Импорт данных
+Сначала - загрузим даннные, с которыми мы работали на прошлом занятии.
 
-### factor and character
+```{r}
+download.file("https://git.io/vaDJt", "godwit_data.csv")
+Godwits<-read.csv("godwit_data.csv", as.is=TRUE)
+```
+Отформатируем таблицу
 
-### визуальный контроль данных, выбросы
+```{r}
+head(Godwits)
+Godwits$DATE<-as.Date(Godwits$DATE)
 
-### график Y~фактор (boxplot)
+format(Godwits$DATE, format='%Y')[1]
+Godwits$Year<-format(Godwits$DATE, format='%Y')
 
-### график Y~ковариата
-  - abline
-  - два пола на одном графике
-  - параметры графика `ylab`, `xlab`, `main`, `pch`
+Godwits$yday<-format(Godwits$DATE, format='%j')
+str(Godwits)
 
-### Линейная регрессия
-	`Вес~клюв`
-  - основные предположения
-  - output
-	
-### Результаты линейной модели на графике
-  
+Godwits_s<-subset(Godwits, select=c(DATE, SEX, MASS, WING, TOTHD, TARS, Year, yday))
+
+str(Godwits_s)
+
+Godwits_s$MASS[!is.na(Godwits_s$MASS==999) & Godwits_s$MASS==999]<-NA
+
+Godwits_s$WING[!is.na(Godwits_s$WING==999) & Godwits_s$WING==999]<-NA
+
+Godwits_s$TARS[!is.na(Godwits_s$TARS==999) & Godwits_s$TARS==999]<-NA
+
+Godwits_s$TOTHD[!is.na(Godwits_s$TOTHD==999) & Godwits_s$TOTHD==999]<-NA
+
+table(Godwits_s$SEX)
+
+Godwits_s$SEX[Godwits_s$SEX %in% c('9', 'o')] #вариант 1
+Godwits_s$SEX[Godwits_s$SEX== '9' | Godwits_s$SEX == 'o']<-NA # вариант 2
+
+table(Godwits_s$SEX)
+
+Godwits_s$SEX<-toupper(Godwits_s$SEX)
+
+table(Godwits_s$SEX)
+
+Godwits_s$SEX<-as.factor(Godwits_s$SEX)
+```
+Boxplot
+```{r}
+plot(Godwits_s$MASS~Godwits_s$SEX)
+
+str(Godwits_s)
+
+plot(Godwits_s$MASS~Godwits_s$WING, xlab='Wing (mm)', ylab='Mass (g)')
+
+plot(Godwits_s$MASS~Godwits_s$WING, xlab='Wing (mm)', ylab='Mass (g)', las=1, main='godwits', type='n')
+
+points(Godwits_s$MASS[Godwits_s$SEX=='M']~Godwits_s$WING[Godwits_s$SEX=='M'], col='blue', pch=19)
+
+# другой вариант
+Males<-subset(Godwits_s, SEX=='M')
+points(Males$MASS~Males$WING, col='blue', pch=19)
+
+abline(h=mean(Males$MASS, na.rm=TRUE))
+
+points(Males$MASS~Males$WING,  pch=21, col='white', cex=3)
+points(Males$MASS~Males$WING, , pch=19, cex=3)
+points(Males$MASS~Males$WING, col='blue', pch=19)
+```
+Теперь самостоятельно добавляем самок
