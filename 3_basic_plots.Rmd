@@ -46,7 +46,9 @@ Godwits_s$SEX<-as.factor(Godwits_s$SEX)
 Boxplot
 ```{r}
 plot(Godwits_s$MASS~Godwits_s$SEX)
-
+```
+Обычный XY график
+```{r}
 str(Godwits_s)
 
 plot(Godwits_s$MASS~Godwits_s$WING, xlab='Wing (mm)', ylab='Mass (g)')

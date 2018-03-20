@@ -5,6 +5,6 @@ Plan of the course is [here](https://github.com/eldarrak/introductory-statistics
 
 Lesson 1 script is [here](https://github.com/eldarrak/introductory-statistics-with-R/blob/master/1_basic_introduction.Rmd).
 
-Lesson script is [here](https://github.com/eldarrak/introductory-statistics-with-R/blob/master/2_data_import.Rmd)
+Lesson 2 script is [here](https://github.com/eldarrak/introductory-statistics-with-R/blob/master/2_data_import.Rmd)
 
-Lesson 4 script is [here](https://github.com/eldarrak/introductory-statistics-with-R/blob/master/3_basic_plots.Rmd)
+Lesson 3 script is [here](https://github.com/eldarrak/introductory-statistics-with-R/blob/master/3_basic_plots.Rmd)
