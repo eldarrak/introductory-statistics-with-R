@@ -1,20 +1,73 @@
-# План занятия 5
+### Занятие 5 Основы линейной регрессии в R, продолжение
 
-## predict линейной модели
+Самостоятельно симулируем данные по двум полам со следующими параметрами
 
-## plot predict
+| Пол | минимальный рост | максимальный рост | интерсепт
+| наклон |
+|:----:|:----:|:----:|:----:|:----:|
+| Girls | 160 | 180 | -115 | 0.95 |
+| boys | 165 | 185 | -105 |1.05 |
 
-## Линейная регрессия с факторной переменной - контрасты
+```{r}
+HeightG<-runif(N , 160, 180)
+HeightB<-runif(N , 165, 185)
 
-## plot predict
+WeightG<-0.95*HeightG-115 +rnorm(N, 0, 5)
+WeightB<-1.05*HeightB-105+rnorm(N, 0, 5)
 
-## линейная модель для реальных данных
+Girls<-data.frame(Height=HeightG, Sex='G', Weight=WeightG)
+Boys<-data.frame(Height=HeightB, Sex='B', Weight=WeightB)
 
-## сравнение моделей LRT
+Data<-rbind(Girls, Boys)
+str(Data)
+```
 
-## сравнение моделей AIC
+линейная регрессия без взаимодействия
 
-## введение в GLM - Poisson for count data
+```{r}
+Model2<-lm(Weight ~ Height + Sex, data=Data)
 
+summary(Model2)
+```
 
+Теперь добавляем взаимодейсвтие и тестируем его
 
+```{r}
+Model3<-lm(Weight ~ Height + Sex+ Height:Sex, data=Data)
+summary(Model3)
+
+#проверяем наличие взаимодействия
+anova(Model2, Model3)
+
+AIC(Model2, Model3)
+
+plot(Weight~Height, data=Data)
+
+Model4<-lm(Weight ~ Height, data=Data)
+anova(Model2, Model4)
+
+Model5<-lm(Weight ~ Sex, data=Data)
+anova(Model5)
+anova(Model2, Model5)
+```
+
+Строим график с результатами регрессии
+
+```{r}
+plot(Weight ~ Height, data=Data, type='n')
+
+points(Weight ~ Height, data=subset(Data, Sex=='B'), col='blue', pch=19)
+points(Weight ~ Height, data=subset(Data, Sex=='G'), col='red', pch=19)
+
+XX<-seq(min(Data$Height), max(Data$Height))
+
+Y_B<-predict(Model2, newdata=data.frame(Height=XX, Sex='B'), se.fit=TRUE)
+str(Y_B)
+Y_B_df<-data.frame(XX, 
+       Boys_mean=Y_B$fit,
+	   Boys_LCI=Y_B$fit-1.96*Y_B$se.fit,
+	   Boys_UCI=Y_B$fit+1.96*Y_B$se.fit)
+lines(Boys_mean~XX, data=Y_B_df, lwd=2, col='blue')
+lines(Boys_UCI~XX, data=Y_B_df, lwd=2, col='blue', lty=2)
+lines(Boys_LCI~XX, data=Y_B_df, lwd=2, col='blue', lty=2)
+```

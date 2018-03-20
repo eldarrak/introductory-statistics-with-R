@@ -1,24 +1,45 @@
-# План занятия 4
+### Занятие 4 Основы линейной регрессии в R
 
-## Уравнение линейной регрессии
+Симулируем данные по которым потом будем проводить регрессию
+```{r}
+N<-100
 
-## Assumptions
+Height<-runif(N, 160, 190)
+
+Weight<-Height-110
+
+plot(Weight~Height)
+
+Weight<-Height-110+rnorm(N, mean=0, sd=5)
+
+plot(Weight~Height)
+
+Data<-data.frame(Height, Weight)
+```
+
+Регрессия
+
+Предположения линейной регрессии
    - Linear relationship
    - Multivariate normality
    - No or little multicollinearity
    - No auto-correlation
    - Homoscedasticity
 
-## Симуляция данных для линейной модели Y~a+bx+Epsilon
+```{r}
+Model1<-lm(Weight~Height, data=Data)
 
-## Анализ линейной модели в R (lm)
+summary(Model1)
 
-## plot.lm
+#Y~a+b*X+E
 
-## predict
+hist(Weight)
+Residuals<-residuals(Model1)
+hist(Residuals)
 
-## plot predict
+plot(Model1)
 
-## Линейная регрессия с факторной переменной - контрасты
+Data<-rbind(Data, c(200, 40))
 
-## plot predict
+Data<-Data[-101,]
+```
