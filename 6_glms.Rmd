@@ -1,0 +1,60 @@
+### Занятие 6 Обобщенные линейные модели
+
+Сначала загрузим оба файла необходимые для занятия
+```{r} 
+download.file("https://git.io/vVQUv", "tree_swallow_data.csv")
+
+download.file("https://git.io/vxZRh", "Geese_proportion.csv")
+```
+Начинаем работу с первым файлом
+
+```{r}
+setwd('d:')
+Data<-read.csv("tree_swallow_data.csv", as.is=TRUE)
+
+str(Data)
+
+head(Data)
+
+plot(nclutch~jd, data=Data)
+plot(jitter(nclutch)~jd, data=Data, pch='.', cex=2)
+
+Model1<-lm(nclutch~jd, data=Data)
+abline(Model1)
+
+plot(Model1)
+
+hist(residuals(Model1))
+
+plot(jitter(nclutch)~jd, data=Data, pch='.', cex=2)
+abline(Model1)
+```{r} 
+Обсуждаем некорректность использования линейной регрессии для анализа размера кладки
+
+# линейная регрессия
+Y~a+bx + ошибка (нормальная)
+
+# обобщенная линейная регрессия
+Y~ e^(a+bx) + ошибка (пуассон)
+
+```{r} 
+GLM1<-glm(nclutch~jd, data=Data, family=poisson)
+
+summary(GLM1)
+plot(GLM1)
+
+table(Data$nseason)
+
+Data$fseason<-as.factor(Data$nseason)
+str(Data)
+
+GLM2<-glm(nclutch~jd + nseason, data=Data, family=poisson)
+
+summary(GLM2)
+
+GLM3<-glm(nclutch~jd + fseason, data=Data, family=poisson)
+
+summary(GLM3)
+
+anova(GLM1, GLM3, test="Chi")
+```

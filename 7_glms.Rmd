@@ -1,58 +1,40 @@
-# План занятия 6
+### Занятие 7 Обобщенные линейные модели, продолжение
 
-## Основные предлоложнения lm
-
-## GLM
-
-## Poisson GLM для учетных данных
-
-## Пример анализа
+График для пуассоновской регрессии
 ```{r}
-download.file("https://git.io/vVQUv", "tree_swallow_data.csv")
+plot(jitter(nclutch)~jd, data=Data, pch='.', cex=2)
+XX<-seq(min(Data$jd), max(Data$jd))
+XX<-seq(min(Data$jd), 250)
 
-Data<-read.csv("tree_swallow_data.csv", stringsAsFactors=FALSE)
+Y<-predict(GLM1, newdata=data.frame(jd=XX), se.fit=TRUE)
+str(Y)
+Y_df<-data.frame(jd=XX, 
+                 Y=exp(Y$fit),
+   Y_LCI=exp(Y$fit-1.96*Y$se.fit),
+   Y_UCI=exp(Y$fit+1.96*Y$se.fit))
+ 
+plot(jitter(nclutch)~jd, data=Data, pch='.', cex=2, xlim=c(120, 250), ylim=c(0, 8.5))
+
+lines(Y~jd, data=Y_df, lwd=2) 
+lines(Y_LCI~jd, data=Y_df, lwd=2, lty=2) 
+lines(Y_UCI~jd, data=Y_df, lwd=2, lty=2) 
 ```
-## GLM for proportional and binary data
-```{r}
-download.file("https://git.io/vVQqV", "germination_data.csv")
 
-data<-read.table("germination_data.csv", stringsAsFactors=FALSE, header=TRUE)
+Биномиальная регрессия для анализа пропорций 
+```{r}   
+download.file("https://git.io/vxZRh", "Geese_proportion.csv")
 
-names(data)
-# [1] "count"     "sample"    "Orobanche" "extract"  
-summary(data)
+Data<-read.csv2("Geese_proportion.csv", as.is=TRUE)
+   
+head(Data)   
 
-#let's calculate the proportions:
-data$Prop <- data$count/data$sample
+plot(Data$Autumn/(Data$Autumn+Data$Spring) ~Data$Year)
 
-#this is a quick way to look at an interaction.
-#it doesn't look nice, but its quick...
-interaction.plot(data$extract,data$Orobanche,data$Prop)
+GLM4<-glm(cbind(Data$Autumn,Data$Spring)~Data$Year, family='binomial')
 
-#it looks like the proportion of germinating seeds is higher on cucumber
-#and that a75 does better than a73. 
-#It might even be that there is an interaction, with a75 proportions increasing more than
-#a73 when moving from bean to cucumber. Lets see if the data contains evidence for this.
+GLM5<-glm(cbind(Data$Autumn,Data$Spring)~1, family='binomial')
 
-# In binomial glms, the response variable is made up of 
-# two columns: successes and failures.
-# You could use just the proportions, but then you loose information, because sample sizes differ
-# greatly:
-data$sample
+summary(GLM5)
 
-
-#first define the two-column response
-data$failures <- data$sample - data$count
-y <- cbind(data$count,data$failures)
-
-#produce the full model, and check for overdispersion!
-model1 <- glm(y ~ extract*Orobanche,data=data,binomial)
-summary(model1)
-
-#how high is the overdispersion?
-
-
-#we must move over to quasibinomial:
-model2 <- glm(y ~ extract*Orobanche,data=data,quasibinomial)
-summary(model2)
+AIC(GLM4, GLM5)
 ```
