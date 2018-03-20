@@ -28,7 +28,7 @@ hist(residuals(Model1))
 
 plot(jitter(nclutch)~jd, data=Data, pch='.', cex=2)
 abline(Model1)
-```{r} 
+```
 Обсуждаем некорректность использования линейной регрессии для анализа размера кладки
 
 # линейная регрессия
