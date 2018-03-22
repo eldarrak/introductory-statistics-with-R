@@ -16,3 +16,5 @@ Lesson 5 script is [here](https://github.com/eldarrak/introductory-statistics-wi
 Lesson 6 script is [here](https://github.com/eldarrak/introductory-statistics-with-R/blob/master/6_glms.Rmd)
 
 Lesson 7 script is [here](https://github.com/eldarrak/introductory-statistics-with-R/blob/master/7_glms.Rmd)
+
+Lesson 8 script is [here](https://github.com/eldarrak/introductory-statistics-with-R/blob/master/8_Principal_components_and_GAM.Rmd)
