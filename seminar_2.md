@@ -1,4 +1,4 @@
-# Занятие 2 Базовые основы R
+# Р—Р°РЅСЏС‚РёРµ 2 Р‘Р°Р·РѕРІС‹Рµ РѕСЃРЅРѕРІС‹ R
 ```{r}
 Males<-data.frame(
         Sex=rep('Male', 50),
@@ -18,17 +18,17 @@ tail(Swifts)
 
 str(Swifts)
 
-ls() # просмотреть объекты в памяти
+ls() # РїСЂРѕСЃРјРѕС‚СЂРµС‚СЊ РѕР±СЉРµРєС‚С‹ РІ РїР°РјСЏС‚Рё
 
 ?ls
 
-Swifts[ 1:10, 2] # с первой по десятую строки во втором столбце
+Swifts[ 1:10, 2] # СЃ РїРµСЂРІРѕР№ РїРѕ РґРµСЃСЏС‚СѓСЋ СЃС‚СЂРѕРєРё РІРѕ РІС‚РѕСЂРѕРј СЃС‚РѕР»Р±С†Рµ
 
 Swifts$Sex
 Swifts[,1]
 
-nrow(Swifts) # число колонок
-ncol(Swifts) # число столбцов
+nrow(Swifts) # С‡РёСЃР»Рѕ РєРѕР»РѕРЅРѕРє
+ncol(Swifts) # С‡РёСЃР»Рѕ СЃС‚РѕР»Р±С†РѕРІ
 
 Swifts[nrow(Swifts), ncol(Swifts)]<-40
 Swifts$Tail[length(Swifts$Tail)]<-40
@@ -38,12 +38,11 @@ Swifts[Swifts$Tail>60,]
 
 Swifts[Swifts$Sex=='Male',]
 
-save(Swifts, file='Swifts.RData')
 
-getwd() # посмотреть рабочую директорию
-setwd('F:/tmp') # установить рабочую директорию
+getwd() # РїРѕСЃРјРѕС‚СЂРµС‚СЊ СЂР°Р±РѕС‡СѓСЋ РґРёСЂРµРєС‚РѕСЂРёСЋ
+setwd('F:/tmp') # СѓСЃС‚Р°РЅРѕРІРёС‚СЊ СЂР°Р±РѕС‡СѓСЋ РґРёСЂРµРєС‚РѕСЂРёСЋ
 
-Сохраняем в внутреннем формате R
+РЎРѕС…СЂР°РЅСЏРµРј РІ РІРЅСѓС‚СЂРµРЅРЅРµРј С„РѕСЂРјР°С‚Рµ R
 ```{r}
 save(Swifts, file='Swifts.RData')
 load('Swifts.RData')
@@ -51,7 +50,7 @@ load('Swifts.RData')
 
 
 
-Сохраняем .csv файл
+РЎРѕС…СЂР°РЅСЏРµРј .csv С„Р°Р№Р»
 ```{r}
 write.csv2(Swifts, 
       file='Swifts.csv',
@@ -60,12 +59,11 @@ write.csv2(Swifts,
 Swifts<-read.csv2(file='Swifts.csv')
 ```
 
-
+РїР°РєРµС‚С‹ Рё Р±РёР±Р»РёРѕС‚РµРєРё
+```{r}
 install.packages('FLightR')
 
 library('nlme')
 citation('nlme')
 
-
-
-
+```
