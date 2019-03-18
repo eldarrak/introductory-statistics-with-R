@@ -7,3 +7,6 @@ Seminar 1 script is [here](https://github.com/eldarrak/introductory-statistics-w
 
 Seminar 2 script is [here](https://github.com/eldarrak/introductory-statistics-with-R/blob/master/seminar_2.md).
 
+Seminar 3 script is [here](https://github.com/eldarrak/introductory-statistics-with-R/blob/master/seminar_3.md).
+
+Seminar 45 script is [here](https://github.com/eldarrak/introductory-statistics-with-R/blob/master/seminar_4.md).
