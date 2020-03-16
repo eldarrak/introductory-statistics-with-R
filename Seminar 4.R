@@ -91,6 +91,48 @@ AIC(Model4, Model6)
 
 plot(Weight~Height, data=Data, type='n')
 points(Weight~Height, data=Data[Data$Sex=='F',], col='pink', pch=19)
+points(Weight~Height, data=Data[Data$Sex=='M',], col='blue', pch=19)
+
+abline(a=-113.03742 , b=1.02238)
+
+abline(a=-113.03742+17.98365 , b=1.02238, col='blue')
+
+XX<-seq(min(Data$Height), max(Data$Height), by=0.1)
+
+Pred_F<-predict(Model4, newdata=data.frame(Height=XX, Sex='F'), se.fit=TRUE)
+
+Pred_M<-predict(Model4, newdata=data.frame(Height=XX, Sex='M'), se.fit=TRUE)
+
+Pred_df<-data.frame(   
+      Female_mean=Pred_F$fit, 
+	  Female_UCI= Pred_F$fit+1.96*Pred_F$se.fit,
+	  Female_LCI= Pred_F$fit-1.96*Pred_F$se.fit,
+      Male_mean=Pred_M$fit, 
+	  Male_UCI= Pred_M$fit+1.96*Pred_M$se.fit,
+	  Male_LCI= Pred_M$fit-1.96*Pred_M$se.fit)
+plot(Weight~Height, data=Data, type='n')
+points(Weight~Height, data=Data[Data$Sex=='F',], col='pink', pch=19)
+points(Weight~Height, data=Data[Data$Sex=='M',], col='blue', pch=19)
+
+lines(Pred_df$Female_mean~XX, col='red')
+lines(Pred_df$Female_UCI~XX, col='red', lty=2)
+lines(Pred_df$Female_LCI~XX, col='red', lty=2)
+
+lines(Pred_df$Male_mean~XX, col='red')
+lines(Pred_df$Male_UCI~XX, col='red', lty=2)
+lines(Pred_df$Male_LCI~XX, col='red', lty=2)
+
+eldarrak@gmail.com
+
+
+https://eldarrak.github.io/post/phd-positon-2019/
+
+
+	  
+	  
+	  
+
+
 
 
 
