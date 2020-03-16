@@ -66,16 +66,31 @@ tail(Data)
 
 Model3<-lm(Weight~Height*Sex, data=Data)
 summary(Model3)
+###############################
+# 
+Model3a<-lm(Weight~Height+Sex+Height:Sex, data=Data)
 
+Model4<-lm(Weight~Height+Sex, data=Data)
+summary(Model4)
 
+anova(Model3, Model4)
 
+AIC(Model3, Model4)
 
+Model5<-lm(Weight~Height, data=Data)
+summary(Model5)
+anova(Model4, Model5)
+AIC(Model4, Model5)
+# пол был важен
 
+# теперь проверим рост
 
+Model6<-lm(Weight~Sex, data=Data)
+anova(Model4, Model6)
+AIC(Model4, Model6)
 
-
-
-
+plot(Weight~Height, data=Data, type='n')
+points(Weight~Height, data=Data[Data$Sex=='F',], col='pink', pch=19)
 
 
 
