@@ -122,18 +122,9 @@ lines(Pred_df$Male_mean~XX, col='red')
 lines(Pred_df$Male_UCI~XX, col='red', lty=2)
 lines(Pred_df$Male_LCI~XX, col='red', lty=2)
 
-eldarrak@gmail.com
+
+
+
 
 
 https://eldarrak.github.io/post/phd-positon-2019/
-
-
-	  
-	  
-	  
-
-
-
-
-
-
