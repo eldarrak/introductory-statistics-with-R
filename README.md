@@ -4,17 +4,3 @@ This folder contains some info and datasets for my course at Moscow State Univer
 Plan of the course is [here](https://github.com/eldarrak/introductory-statistics-with-R/blob/master/plan.md).
 
 Seminar 1 script is [here](https://github.com/eldarrak/introductory-statistics-with-R/blob/master/Notebook_seminars_1_and_2.md).
-
-Seminar 2 script is [here](https://github.com/eldarrak/introductory-statistics-with-R/blob/master/seminar_2.md).
-
-Seminar 3 script is [here](https://github.com/eldarrak/introductory-statistics-with-R/blob/master/seminar_3.md).
-
-Seminar 4 script is [here](https://github.com/eldarrak/introductory-statistics-with-R/blob/master/seminar_4.md).
-
-Seminar 5 script is [here](https://github.com/eldarrak/introductory-statistics-with-R/blob/master/seminar_5.md).
-
-Seminar 6 script is [here](https://github.com/eldarrak/introductory-statistics-with-R/blob/master/seminar_6.md).
-
-Seminar 7 script is [here](https://github.com/eldarrak/introductory-statistics-with-R/blob/master/seminar_7.md).
-
-Seminar 8 script is [here](https://github.com/eldarrak/introductory-statistics-with-R/blob/master/seminar_8.md).
